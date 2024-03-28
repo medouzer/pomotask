@@ -40,14 +40,11 @@ const Login = () => {
       navigate('/');
     } catch (err) {
       const errors = err.data.errors;
-      console.log(errors);
       errors.forEach((e) => {
         if (e.path === 'username') {
-          console.log(e.msg);
           setUsernameErrText(e.msg);
         }
         if (e.path === 'password') {
-          console.log(e.msg);
           setPasswordErrText(e.msg);
         }
       });
