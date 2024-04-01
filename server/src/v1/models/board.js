@@ -15,7 +15,7 @@ const boardSchema = new Schema(
     },
     title: {
       type: String,
-      default: 'intitled',
+      default: 'Untitled',
     },
     description: {
       type: String,
