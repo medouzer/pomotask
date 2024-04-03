@@ -6,6 +6,7 @@ import authUtils from '../../utils/authUtils';
 import Loading from '../common/Loading';
 import Sidebar from '../../components/common/Sidebar';
 import { setUser } from '../../redux/features/userSlice';
+import MenuAppBar from '../../components/common/Menuappbar';
 
 const AppLayout = () => {
   const navigate = useNavigate();
@@ -30,17 +31,25 @@ const AppLayout = () => {
     <Box
       sx={{
         display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      <Sidebar />
+      <MenuAppBar fullHeight fullWidth />
       <Box
         sx={{
-          flexGrow: 1,
-          p: 1,
-          width: 'max-content',
+          display: 'flex',
         }}
       >
-        <Outlet />
+        <Sidebar />
+        <Box
+          sx={{
+            flexGrow: 1,
+            p: 1,
+            width: 'max-content',
+          }}
+        >
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );

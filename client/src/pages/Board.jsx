@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import boardApi from '../api/boardApi';
-import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  TextField,
+  Typography,
+} from '@mui/material';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import StartBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import Kanban from '../components/common/Kanban';
 
 const Board = () => {
   const { boardId } = useParams();
@@ -82,18 +90,8 @@ const Board = () => {
           />
         </box>
         <Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <Button>Add section</Button>
-            <Typography variant='body2' fontWeight='700'>
-              {sections.length} Sections
-            </Typography>
-          </Box>
+          {/* board code */}
+          <Kanban />
         </Box>
       </Box>
     </>

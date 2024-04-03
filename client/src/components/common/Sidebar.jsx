@@ -39,7 +39,7 @@ const Sidebar = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const activeItem = boards.findIndex((e) => e.id === boardId);
+    const activeItem = boards.findIndex((e) => e._id === boardId);
     if (boards.length > 0 && boardId === undefined) {
       navigate(`/boards/${boards[0]._id}`);
     }
@@ -52,6 +52,9 @@ const Sidebar = () => {
   };
 
   const onDragEnd = async ({ source, destination }) => {
+    if (!destination) {
+      return;
+    }
     const newList = [...boards];
     const [removed] = newList.splice(source.index, 1);
     newList.splice(destination.index, 0, removed);
@@ -79,7 +82,7 @@ const Sidebar = () => {
   };
 
   return (
-    <Drawer
+    <box
       container={window.document.body}
       variant='permanent'
       open={true}
@@ -93,11 +96,11 @@ const Sidebar = () => {
         disablePadding
         sx={{
           width: sidebarWith,
-          height: '100vh',
+          height: '95vh',
           backgroundColor: assets.colors.secondary,
         }}
       >
-        <ListItem>
+        {/* <ListItem>
           <Box
             sx={{
               width: '100%',
@@ -113,7 +116,7 @@ const Sidebar = () => {
               <LogoutOutlinedIcon fontSize='small' />
             </IconButton>
           </Box>
-        </ListItem>
+        </ListItem> */}
         <Box sx={{ paddingTop: '10px' }} />
         <ListItem>
           <Box
@@ -155,7 +158,11 @@ const Sidebar = () => {
             {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 {boards.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                  <Draggable
+                    key={item._id}
+                    draggableId={item._id}
+                    index={index}
+                  >
                     {(provided, snapshot) => (
                       <ListItemButton
                         ref={provided.innerRef}
@@ -192,7 +199,7 @@ const Sidebar = () => {
           </Droppable>
         </DragDropContext>
       </List>
-    </Drawer>
+    </box>
   );
 };
 
