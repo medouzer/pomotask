@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Board from './pages/Board';
+import Landingpage from './pages/Landingpage';
 
 function App() {
   const theme = createTheme({
@@ -26,6 +27,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<AuthLayout />}>
+            <Route path='landingpage' element={<Landingpage />} />
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup />} />
           </Route>

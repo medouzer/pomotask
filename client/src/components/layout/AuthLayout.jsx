@@ -23,19 +23,19 @@ const AuthLayout = () => {
   return loading ? (
     <Loading fullHeight />
   ) : (
-    <Container component='main' maxWidth='xs'>
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <h1>Auth Layout</h1>
-        <Outlet />
-      </Box>
-    </Container>
+    // <Container component='main' maxWidth='xs'>
+    <Box
+    // sx={{
+    //   marginTop: 8,
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    //   alignItems: 'center',
+    // }}
+    >
+      {/* <h1>Auth Layout</h1> */}
+      <Outlet />
+    </Box>
+    // </Container>
   );
 };
 

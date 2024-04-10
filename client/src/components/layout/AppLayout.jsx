@@ -17,7 +17,7 @@ const AppLayout = () => {
     const checkAuth = async () => {
       const user = await authUtils.isAuthenticated();
       if (!user) {
-        navigate('/login');
+        navigate('/Landingpage');
       } else {
         dispatch(setUser(user));
         setLoading(false);
@@ -34,7 +34,7 @@ const AppLayout = () => {
         flexDirection: 'column',
       }}
     >
-      <MenuAppBar fullHeight fullWidth />
+      <MenuAppBar />
       <Box
         sx={{
           display: 'flex',

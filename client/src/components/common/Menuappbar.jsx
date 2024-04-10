@@ -7,23 +7,41 @@ import {
   Avatar,
   Divider,
   ListItemIcon,
+  Button,
 } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
-import { useSelector, useDispatch } from 'react-redux';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
+import { useEffect, useState } from 'react';
+import authUtils from '../../utils/authUtils';
 
 export default function MenuAppBar() {
   const user = useSelector((state) => state.user.value);
   const username = user.username;
   const navigate = useNavigate();
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const isAuthenticated = await authUtils.isAuthenticated();
+        if (!isAuthenticated) {
+          setAuth(false);
+        } else {
+          setAuth(true);
+        }
+      } catch (error) {
+        console.error('Error checking authentication:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, []);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,7 +55,6 @@ export default function MenuAppBar() {
     let hash = 0;
     let i;
 
-    /* eslint-disable no-bitwise */
     for (i = 0; i < string.length; i += 1) {
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
@@ -48,12 +65,12 @@ export default function MenuAppBar() {
       const value = (hash >> (i * 8)) & 0xff;
       color += `00${value.toString(16)}`.slice(-2);
     }
-    /* eslint-enable no-bitwise */
 
     return color;
   };
 
   const stringAvatar = (name) => {
+    if (!name) return;
     return {
       sx: {
         bgcolor: stringToColor(name),
@@ -64,14 +81,30 @@ export default function MenuAppBar() {
 
   const logout = () => {
     localStorage.removeItem('token');
+    navigate('/');
+  };
+
+  const signup = () => {
+    navigate('/signup');
+  };
+
+  const login = () => {
     navigate('/login');
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Box>
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+          <Typography
+            variant='h6'
+            component='div'
+            sx={{ flexGrow: 1, cursor: 'pointer' }}
+          >
             POMOTASK
           </Typography>
           {auth && (
@@ -84,6 +117,7 @@ export default function MenuAppBar() {
                 aria-haspopup='true'
                 onClick={handleMenu}
                 color='inherit'
+                sx={{ cursor: 'pointer' }}
               />
               <Menu
                 anchorEl={anchorEl}
@@ -121,7 +155,10 @@ export default function MenuAppBar() {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
                 <MenuItem>
-                  <Avatar {...stringAvatar(username)} />
+                  <Avatar
+                    {...stringAvatar(username)}
+                    sx={{ cursor: 'pointer' }}
+                  />
                   {user.username}
                 </MenuItem>
                 <Divider />
@@ -132,6 +169,20 @@ export default function MenuAppBar() {
                   Logout
                 </MenuItem>
               </Menu>
+            </div>
+          )}
+          {!auth && (
+            <div>
+              <Button
+                variant='contained'
+                onClick={login}
+                sx={{ marginRight: '10px' }}
+              >
+                Login
+              </Button>
+              <Button variant='contained' onClick={signup}>
+                Signup
+              </Button>
             </div>
           )}
         </Toolbar>
