@@ -6,15 +6,20 @@ const cors = require('cors');
 
 const app = express();
 
+const crosOption = {
+    origin: [
+      "https://pomotask-ten.vercel.app/",
+    ],
+    credentials: true,
+};
+
+app.use(cors(crosOption));
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
-const crosOption = {
-  origin: "*",
-};
 
 app.use(logger('dev'));
 app.use(express.json());
