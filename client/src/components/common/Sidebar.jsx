@@ -26,30 +26,27 @@ const Sidebar = () => {
   const sidebarWith = 250;
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const getBoards = async () => {
+    try {
+      const res = await boardApi.getAll();
+      dispatch(setBoards(res));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const getBoards = async () => {
-      try {
-        const res = await boardApi.getAll();
-        dispatch(setBoards(res));
-      } catch (err) {
-        alert(err);
-      }
-    };
     getBoards();
   }, [dispatch]);
 
   useEffect(() => {
+    // getBoards();
+
     const activeItem = boards.findIndex((e) => e._id === boardId);
     if (boards.length > 0 && boardId === undefined) {
-      navigate(`/boards/${boards[0]._id}`);
+      // navigate(`/boards/${boards[0]._id}`);
     }
     setActiveIndex(activeItem);
   }, [boards, boardId, navigate]);
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
 
   const onDragEnd = async ({ source, destination }) => {
     if (!destination) {
@@ -66,7 +63,7 @@ const Sidebar = () => {
     try {
       await boardApi.updatePosition({ boards: newList });
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -77,7 +74,7 @@ const Sidebar = () => {
       dispatch(setBoards(newList));
       navigate(`/boards/${res._id}`);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 

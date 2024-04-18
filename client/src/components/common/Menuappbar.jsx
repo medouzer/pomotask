@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
 import { useEffect, useState } from 'react';
 import authUtils from '../../utils/authUtils';
+import Fade from '@mui/material/Fade';
+import Timer from './Timer';
 
 export default function MenuAppBar() {
   const user = useSelector((state) => state.user.value);
@@ -24,6 +26,12 @@ export default function MenuAppBar() {
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [anchorEltimer, setAnchorEltimer] = React.useState(null);
+  const open = Boolean(anchorEltimer);
+  const handleClick = (event) => {
+    setAnchorEltimer(event.currentTarget);
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -49,6 +57,7 @@ export default function MenuAppBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setAnchorEltimer(null);
   };
 
   const stringToColor = (string) => {
@@ -108,7 +117,45 @@ export default function MenuAppBar() {
             POMOTASK
           </Typography>
           {auth && (
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button
+                id='fade-button'
+                aria-controls={open ? 'fade-menu' : undefined}
+                aria-haspopup='true'
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+                sx={{ marginRight: '20px' }}
+              >
+                PomodoroTimer
+              </Button>
+              <Menu
+                id='fade-menu'
+                // MenuListProps={{
+                //   'aria-labelledby': 'fade-button',
+                // }}
+                anchorEl={anchorEltimer}
+                open={open}
+                onClose={handleClose}
+                // TransitionComponent={Fade}
+                PaperProps={{
+                  style: {
+                    width: 500,
+                    height: 500,
+                  },
+                }}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <Box>
+                  <Timer />
+                </Box>
+              </Menu>
               <Avatar
                 {...stringAvatar(username)}
                 size='large'

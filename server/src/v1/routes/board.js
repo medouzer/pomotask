@@ -24,4 +24,32 @@ router.get(
   boardController.getOne
 );
 
+router.put(
+  '/:boardId',
+  param('boardId').custom((value) => {
+    if (!validation.isObjectId(value)) {
+      return Promise.reject('Invalid board ID');
+    } else {
+      return Promise.resolve();
+    }
+  }),
+  validation.validate,
+  tokenHandler.verifyToken,
+  boardController.update
+);
+
+router.delete(
+  '/:boardId',
+  param('boardId').custom((value) => {
+    if (!validation.isObjectId(value)) {
+      return Promise.reject('Invalid board ID');
+    } else {
+      return Promise.resolve();
+    }
+  }),
+  validation.validate,
+  tokenHandler.verifyToken,
+  boardController.delete
+);
+
 module.exports = router;

@@ -15,6 +15,25 @@ exports.create = async (req, res) => {
   }
 };
 
+exports.update = async (req, res) => {
+  const { boardId } = req.params;
+  const { title, description } = req.body;
+  try {
+    if (title === '') req.body.title = 'Untitled';
+    if (description === '') req.body.description = 'Add descreption here';
+    const currentBoard = await Board.findById(boardId);
+    if (!currentBoard) {
+      return res.status(404).json('Board not found');
+    }
+    const board = await Board.findByIdAndUpdate(boardId, req.body, {
+      $set: req.body,
+    });
+    res.status(200).json(board);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 exports.getAll = async (req, res) => {
   try {
     const boards = await Board.find({ user: req.user._id }).sort('-position');
@@ -53,6 +72,18 @@ exports.getOne = async (req, res) => {
     }
     board._doc.sections = sections;
     res.status(200).json(board);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.delete = async (req, res) => {
+  const { boardId } = req.params;
+  try {
+    await Board.findByIdAndDelete(boardId);
+    await Section.deleteMany({ board: boardId });
+    await Task.deleteMany({ board: boardId });
+    res.status(200).json('deleted');
   } catch (err) {
     res.status(500).json(err);
   }

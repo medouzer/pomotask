@@ -62,7 +62,7 @@ const Kanban = (props) => {
       });
       setData(data);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -71,7 +71,7 @@ const Kanban = (props) => {
       const section = await sectionApi.create(boardId);
       setData([...data, section]);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -81,7 +81,7 @@ const Kanban = (props) => {
       const newData = [...data].filter((e) => e.id !== sectionId);
       setData(newData);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -96,7 +96,7 @@ const Kanban = (props) => {
       try {
         await sectionApi.update(boardId, SectionId, { title: newTitle });
       } catch (err) {
-        alert(err);
+        console.log(err);
       }
     }, timeout);
   };
@@ -104,13 +104,12 @@ const Kanban = (props) => {
   const createTask = async (sectionId) => {
     try {
       const task = await taskApi.create(boardId, { sectionId });
-      console.log(task);
       const newData = [...data];
       const index = newData.findIndex((e) => e.id === sectionId);
       newData[index].tasks.unshift(task);
       setData(newData);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -126,7 +125,7 @@ const Kanban = (props) => {
 
   const onDeleteTask = (task) => {
     const newData = [...data];
-    const sectionIndex = newData.findIndex((e) => e.id === task.sectionId);
+    const sectionIndex = newData.findIndex((e) => e.id === task.section.id);
     const taskIndex = newData[sectionIndex].tasks.findIndex(
       (e) => e.id === task.id
     );
