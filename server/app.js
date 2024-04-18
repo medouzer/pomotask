@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://pomotask.vercel.app'],
+    origin: ['https://pomotask-ten.vercel.app', 'pomotask-ten.vercel.app'],
     credentials: true,
 }));
 
