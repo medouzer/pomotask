@@ -8,11 +8,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin: [
-        "*",
-        "https://pomotask-ten.vercel.app",
-        "https://pomotask-ten.vercel.app/"
-    ],
+    origin: true,
     optionsSuccessStatus: 200 || 204,)
 });
 
