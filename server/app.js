@@ -9,7 +9,7 @@ const app = express();
 const crosOption = {
     origin: [
         "https://pomotask-ten.vercel.app",
-        "https://pomotask-ten.vercel.app/"
+        "pomotask-ten.vercel.app"
     ],
     optionsSuccessStatus: 200 || 204,
 };
