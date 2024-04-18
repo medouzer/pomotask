@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const corsMiddleware = require('./cors.js');
 
 const app = express();
 
@@ -27,6 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/v1', cors(crosOption), require('./src/v1/routes'));
+app.use('/api/v1', corsMiddleware, require('./src/v1/routes'));
 
 module.exports = app;
