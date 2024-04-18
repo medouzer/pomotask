@@ -12,12 +12,16 @@ app.use((req, res, next) => {
   next();
 });
 
+const crosOption = {
+  origin: "*",
+};
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/v1', cors(), require('./src/v1/routes'));
+app.use('/api/v1', cors(crosOption), require('./src/v1/routes'));
 
 module.exports = app;
