@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 
-const baseUrl = 'https://pomotask-back-end.vercel.app';
+const baseUrl = 'https://pomotask-production.up.railway.app/api/v1';
 const getToken = () => localStorage.getItem('token');
 
 const axiosClient = axios.create({
