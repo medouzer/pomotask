@@ -115,7 +115,7 @@ const Timer = () => {
 				time: pomodoroObj.secondsLeft,
 			});
 			return pomodoro_work();
-		
+
 		}
 	};
 
@@ -123,9 +123,9 @@ const Timer = () => {
 		pomodoro_work();
 	}, []);
 
-	useEffect( () => {
+	useEffect(() => {
 		const pomodoroInterval = setInterval(() => {
-			if (pomodoroObj.isPaused ||( pomodoroObj.secondsLeft <= 0 && pomodoroObj.type === 'break')) {
+			if (pomodoroObj.isPaused || (pomodoroObj.secondsLeft <= 0 && pomodoroObj.type === 'break')) {
 				return;
 			}
 			if (pomodoroObj.secondsLeft <= 0 && pomodoroObj.type === 'work') {
@@ -179,7 +179,7 @@ const Timer = () => {
 						) : (
 							<PauseCircleOutlineOutlinedIcon
 								fontSize='large'
-							onClick={handleStatus}
+								onClick={handleStatus}
 							/>
 						)}
 					</Box>
@@ -211,7 +211,7 @@ const Timer = () => {
 					>
 						<label>Work: {workMin}:00</label>
 						<Slider
-							step={1}
+							step={5}
 							value={workMin}
 							valueLabelDisplay='auto'
 							min={MIN}
@@ -220,7 +220,7 @@ const Timer = () => {
 						/>
 						<label>Break: {breakMin}:00</label>
 						<Slider
-							step={1}
+							step={5}
 							value={breakMin}
 							valueLabelDisplay='auto'
 							min={MIN}
@@ -252,129 +252,3 @@ const Timer = () => {
 };
 
 export default Timer;
-
-// const [check, setCheck] = useState(false);
-// const MAX = 100;
-// const MIN = 0;
-// const [workMin, setWorkMin] = useState(25);
-// const [breakMin, setBreakMin] = useState(5);
-// const [isPaused, setIsPaused] = useState(true);
-// const [secondsLeft, setSecondsLeft] = useState(0);
-// const [mode, setMode] = useState('work');
-
-// const secondsLeftRef = useRef(secondsLeft);
-// const isPausedRef = useRef(isPaused);
-// const modeRef = useRef(mode);
-
-// const settings = () => {
-//   setCheck(!check);
-// };
-
-// const set_data = async () => {
-//   const workTime_seconds = workMin * 60;
-//   const breakTime_seconds = breakMin * 60;
-//   await pomodoroApi.create({
-//     time: workTime_seconds,
-//     break_time: breakTime_seconds,
-//   });
-//   setCheck(false);
-// };
-
-// const timerSettings = (newValue, sliderType) => {
-//   if (sliderType === 'work') {
-//     setWorkMin(newValue);
-//   } else if (sliderType === 'break') {
-//     setBreakMin(newValue);
-//   }
-// };
-
-// const tick = () => {
-//   secondsLeftRef.current--;
-//   setSecondsLeft(secondsLeftRef.current);
-// };
-
-// const switchMode = () => {
-//   const nextMode = modeRef.current === 'work' ? 'break' : 'work';
-//   const nextSeconds = (nextMode === 'work' ? workMin : breakMin) * 60;
-
-//   setMode(nextMode);
-//   modeRef.current = nextMode;
-//   setSecondsLeft(nextSeconds);
-//   secondsLeftRef.current = nextSeconds;
-// };
-
-// const pomo_work = async () => {
-//   const pomodoro = await pomodoroApi.getAll();
-//   if (pomodoro.length > 0) {
-//     setWorkMin(pomodoro[0].time / 60);
-//     setBreakMin(pomodoro[0].break_time / 60);
-//     setIsPaused(pomodoro[0].status == 'pause' ? true : false);
-//     secondsLeftRef.current = pomodoro[0].time;
-//     setSecondsLeft(secondsLeftRef.current);
-//   }
-// };
-
-// // useEffect(() => {
-// //   pomo_work();
-// // }, []);
-
-// let minutes = Math.floor(secondsLeft / 60);
-// let seconds = secondsLeft % 60;
-// if (seconds < 10) seconds = '0' + seconds;
-
-// useEffect(() => {
-//   secondsLeftRef.current = workMin * 60;
-//   setSecondsLeft(secondsLeftRef.current);
-
-//   console.log('0000000 : ', secondsLeftRef.current);
-//   const pomoTimer = setInterval(() => {
-//     if (isPaused) {
-//       return;
-//     }
-//     if (secondsLeftRef.current === 0) {
-//       return switchMode();
-//     }
-//     tick();
-//     minutes = Math.floor(secondsLeft / 60);
-//     seconds = secondsLeft % 60;
-//     if (seconds < 10) seconds = '0' + seconds;
-//     console.log(secondsLeftRef.current);
-//   }, 100);
-
-//   return () => clearInterval(pomoTimer);
-// }, [workMin, breakMin, isPaused]);
-
-// const totalSeconds = mode === 'work' ? workMin * 60 : breakMin * 60;
-// const percentage = Math.round((secondsLeft / totalSeconds) * 100);
-
-// // const minutes = Math.floor(secondsLeft / 60);
-// // let seconds = secondsLeft % 60;
-// // if (seconds < 10) seconds = '0' + seconds;
-
-// const changeStatus = async (secondCount) => {
-//   // const pomodoro = await pomodoroApi.getAll();
-//   // if (pomodoro.length > 0) {
-//   //   const pomodoroId = pomodoro[0]._id;
-//   //   const status = isPaused ? 'play' : 'pause';
-//   //   await pomodoroApi.update(pomodoroId, {
-//   //     status: status,
-//   //   });
-//   setSecondsLeft(secondCount);
-//   setIsPaused(!isPaused);
-//   // }
-// };
-
-// const hnadelPlay = async () => {
-//   // const pomodoro = await pomodoroApi.getAll();
-//   // if (pomodoro.length > 0) {
-//   //   const pomodoroId = pomodoro[0]._id;
-//   //   const restTime = pomodoro[0].time;
-//   //   await pomodoroApi.update(pomodoroId, {
-//   //     status: 'play',
-//   //   });
-//   //   secondsLeftRef.current = restTime;
-//   //   setSecondsLeft(secondsLeftRef.current);
-//   //   console.log(secondsLeftRef.current);
-//   // }
-//   setIsPaused(!isPaused);
-// };

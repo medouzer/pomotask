@@ -6,9 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import logo1 from '../assets/images/task.png';
-import logo2 from '../assets/images/task.png';
-import logo3 from '../assets/images/task.png';
 
 const Landingpage = () => {
   return (
@@ -54,7 +51,7 @@ const Landingpage = () => {
               <CardMedia
                 component='img'
                 height='250'
-                image={assets.images.task}
+                image={assets.images.BoardsImg}
                 alt='task'
               />
               <CardContent>
@@ -62,8 +59,7 @@ const Landingpage = () => {
                   Boards
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  Organize your tasks and projects visually with customizable boards. Create different boards for various projects or categories, and easily move tasks between them as they progress.
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -73,7 +69,7 @@ const Landingpage = () => {
               <CardMedia
                 component='img'
                 height='250'
-                image={assets.images.task}
+                image={assets.images.TaskImg}
                 alt='task'
               />
               <CardContent>
@@ -81,8 +77,7 @@ const Landingpage = () => {
                   Tasks
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  Keep track of all your tasks in one place. Add new tasks, assign them to team members, set due dates, and add detailed descriptions or attachments. Stay on top of your workload and never miss a deadline.
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -92,7 +87,7 @@ const Landingpage = () => {
               <CardMedia
                 component='img'
                 height='250'
-                image={assets.images.task}
+                image={assets.images.PomodoroImg}
                 alt='task'
               />
               <CardContent>
@@ -100,8 +95,7 @@ const Landingpage = () => {
                   Pomodor Timer
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  Boost your productivity with the Pomodoro technique. Set timers for focused work sessions followed by short breaks to maintain concentration and avoid burnout. Enhance your time management skills and accomplish more in less time.
                 </Typography>
               </CardContent>
             </CardActionArea>
