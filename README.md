@@ -1,4 +1,4 @@
-# TaskMeister: A Trello-inspired Project Management App with Built-In Productivity Tools
+# PomoTask: A Trello-inspired Project Management App with Built-In Productivity Tools
 
 ## Table of Contents
 
@@ -20,13 +20,10 @@
 - [Pomodoro Timer Functionality](#pomodoro-timer-functionality)
 - [Additional Features (Optional)](#additional-features-optional)
 - [Deployment Instructions](#deployment-instructions)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
-TaskMeister is a web-based project management application inspired by Trello. It offers a user-friendly interface for creating and managing tasks, similar to Trello's board and card system. TaskMeister goes beyond basic task management by incorporating a built-in Pomodoro timer to enhance productivity and focus.
+PomoTask is a web-based project management application inspired by Trello. It offers a user-friendly interface for creating and managing tasks, similar to Trello's board and card system. TaskMeister goes beyond basic task management by incorporating a built-in Pomodoro timer to enhance productivity and focus.
 
 ## Features
 
@@ -34,8 +31,6 @@ TaskMeister is a web-based project management application inspired by Trello. It
 - **Drag-and-Drop Functionality:** Effortlessly move cards between lists to reflect your workflow.
 - **Task Details:** Add descriptions, deadlines, and labels to cards for better task clarity.
 - **Pomodoro Timer Integration:** Utilize the built-in Pomodoro timer to implement the Pomodoro Technique for focused work sessions and improved productivity.
-- **Customizable Interface:** Personalize the application's theme and appearance to suit your preferences (optional).
-- **Additional Features (Optional):** Explore further functionalities like file attachments, comments, notifications, and integrations with third-party services (e.g., calendar).
 
 ## Technologies Used
 
@@ -141,29 +136,6 @@ Before deploying the TaskMeister application, ensure you have the following prer
    - Copy these static files to a location accessible by your web server (e.g., Apache, Nginx).
    - Configure your web server to serve these static files. If you're using Nginx, you can create a new server block and specify the root directory as the `/build` directory.
 
-3. **Configure Reverse Proxy (Optional):**
-   - If your backend and frontend are hosted on separate servers or domains, you may need to configure a reverse proxy to route requests from the frontend to the backend. This can be done using Nginx or other web server software.
-
-4. **Domain Configuration (Optional):**
-   - If you have a custom domain name, make sure to update your DNS settings to point to the IP address of your server or hosting provider.
-
-5. **SSL Configuration (Optional):**
-   - If you're serving the frontend over HTTPS, ensure that your web server is properly configured to use SSL certificates. You may need to update your server configuration to enable SSL and specify the paths to your SSL certificate and key files.
-
-### Final Steps
-
-1. **Testing:**
-   - Once both the backend and frontend are deployed, thoroughly test the application to ensure everything is working as expected. Test all functionalities, including creating tasks, moving cards between lists, and using the Pomodoro timer.
-
-2. **Monitoring and Maintenance:**
-   - Set up monitoring tools to track the performance and uptime of your application. Monitor server resources, database queries, and API response times.
-   - Establish a maintenance plan for regular updates and backups. Schedule routine maintenance to apply security patches, upgrade dependencies, and perform backups of your data.
-
-3. **Scaling (Optional):**
-   - As your user base grows, consider implementing scalability solutions to handle increased traffic and workload. This may involve deploying additional server instances, using load balancers, or optimizing database performance.
-
-4. **Documentation:**
-   - Document the deployment process, including any custom configurations or setup steps. This will make it easier for future developers to understand and maintain the application.
 
 Following these deployment instructions should help you successfully deploy the TaskMeister application to a production environment. Make sure to adapt the steps based on your specific hosting environment and requirements.
 
