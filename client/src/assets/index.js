@@ -1,9 +1,7 @@
 const assets = {
   images: {
     backgroundimg: require('./images/background.jpg'),
-    TaskImg: require('./images/Tasks.png'),
-    BoardsImg: require('./images/Boards.png'),
-    PomodoroImg: require('./images/Pomodoro.png'),
+    task: require('./images/task.png'),
   },
   colors: {
     secondary: '#292929',

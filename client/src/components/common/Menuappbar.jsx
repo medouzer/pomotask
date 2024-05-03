@@ -90,7 +90,7 @@ export default function MenuAppBar() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    navigate('/Landingpage');
+    navigate('/');
   };
 
   const signup = () => {
